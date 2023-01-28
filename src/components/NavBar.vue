@@ -1,15 +1,15 @@
 <template>
    <nav>   
         <div class="logo">
-            <img src="../assets/logo.png">
-            <h1>VueShop</h1>
+            <router-link :to="{name:'home'}"><img src="../assets/logo.png" title="Home" alt="shop logo"></router-link>         
+            <h1>VueShop</h1>            
         </div>
       
-        <input type="text" placeholder="¿Qué estas buscando?">
+        <input type="text" placeholder="What are you looking for?">
       
         <div class="buttons">
             <custom-button class="logout">
-                <span>Log Out</span>
+                <router-link :to="{name:'home'}">Log Out</router-link>
                 <template v-slot:icon><span>✖</span></template>            
             </custom-button>   
         </div>          
@@ -37,6 +37,7 @@ export default defineComponent({
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-family: 'Roboto' sans-serif;
     }
     input {
         width: 100%;
@@ -56,7 +57,7 @@ export default defineComponent({
     }
     img {height: 55px;}
     h1 {
-        font-family: 'Roboto' sans-serif;
+        
         font-weight: bold;
         color: #41b883;
     }

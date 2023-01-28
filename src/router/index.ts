@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,6 +7,19 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component:() => import(/* webpackChunkName: "about" */ '../views/HomeView.vue')
   },
+  {
+    path: '/products/:id',
+    name: 'detail',
+    component:() => import(/* webpackChunkName: "about" */ '../views/ProductView.vue'),
+    props: (route) => {
+      const id = Number (route.params.id);
+      return isNaN (id) ? { id: null } : { id }
+    }
+  },
+  {
+    path:'/login',
+    component:() => import(/* webpackChunkName: "about" */ '../views/LoginView.vue'),
+  }
   
 ]
 
