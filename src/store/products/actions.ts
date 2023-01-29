@@ -2,9 +2,10 @@ import vueShopApi from "@/api/vueShopApi";
 import { Product } from "@/models/products";
 import { AxiosResponse } from "axios";
 import { ActionTree } from "vuex";
+import { IState } from "..";
 import { IProductsState } from "./state";
 
-const actions: ActionTree<IProductsState, any> = {
+const actions: ActionTree<IProductsState, IState> = {
     async fetchProducts({commit}) {
         commit('setIsLoading', true)
 

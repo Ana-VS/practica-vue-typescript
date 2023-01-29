@@ -8,7 +8,7 @@
         <input type="text" placeholder="What are you looking for?">
       
         <div class="buttons">
-            <custom-button class="logout">
+            <custom-button class="logout" @click="logOut">
                 <router-link :to="{name:'home'}">Log Out</router-link>
                 <template v-slot:icon><span>✖</span></template>            
             </custom-button>   
@@ -17,6 +17,7 @@
 </template>  
 
 <script lang="ts">
+import router from '@/router';
 import  {defineComponent} from 'vue';
 
 import CustomButton from './CustomButton.vue';
@@ -25,6 +26,14 @@ export default defineComponent({
     name:'NavBar',
     components: {
         CustomButton,
+    },
+    setup() {
+        return {
+            logOut: () => {
+                localStorage.removeItem('token');
+                router.push({ name: "login" });
+            }
+        }
     }
 })
 </script>

@@ -1,31 +1,53 @@
 <template>
-    <div class="container">
+    <form class="container" >
         <div class="brand-logo"></div>
         <div class="brand-title">VueShop</div>
         <div class="inputs">
             <label>EMAIL</label>
-            <input type="email" placeholder="example@test.com" />
+            <input type="email" placeholder="example@test.com" v-model="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
             <label>PASSWORD</label>
-            <input type="password" placeholder="Enter your password" />
-            <custom-button type="submit" class="button">
+            <input type="password" placeholder="Enter your password" v-model="password" required>
+            <custom-button type="submit" class="button" @click.prevent="login(email, password)">
                 <span>Log In</span>
                 <template v-slot:icon><span>✔</span></template>            
             </custom-button>   
         </div> 
-    </div>   
+      </form>   
 </template>
 
 <script lang="ts">
-import  {defineComponent} from 'vue';
 
+import { useLogin } from '@/composables/useLogin';
+import  {defineComponent, ref} from 'vue';
 import CustomButton from '../components/CustomButton.vue';
 
+
+ 
 export default defineComponent({
     name:'LoginView',
     components: {
         CustomButton,
+    },
+       
+    setup() {
+      const {fetchToken} =useLogin();
+      let password ='';
+      let email = '';
+      return {
+        email,
+        password,
+        login: (email:string, password:string) => {
+          const data = {
+            email : email,
+            password: password,
+          }
+          fetchToken(data)
+          console.log (data)
+        }
+      }
     }
-})
+ 
+  });
 </script>
 
 <style scoped>

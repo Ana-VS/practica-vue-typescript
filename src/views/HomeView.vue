@@ -2,7 +2,7 @@
   <NavBar />
   <div class="home">
       <div v-if="isLoading">
-          Cargando productos... 
+          Loading items... 
       </div>
       <div class="product-list" v-else>
          <ProductItem v-for="product in products" 
@@ -11,8 +11,8 @@
          > 
             <template v-slot:button>
                 <CustomButton class="detail" @click="goDetail(product)">
-                  <span>Detalle</span>
-                  <template v-slot:icon><span> 👀</span></template>
+                  <span>Detail</span>
+                  <template v-slot:icon><span> ➡</span></template>
                 </CustomButton>
             </template>
           </ProductItem>
